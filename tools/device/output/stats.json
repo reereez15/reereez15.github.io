@@ -1,0 +1,35 @@
+{
+  "input_file": "ritual-history-sample.txt",
+  "input_sha256_12": "de8c05d53a21",
+  "number_cells": [
+    {
+      "label": "기록 일수",
+      "value": 28,
+      "unit": "일",
+      "source": "리추얼 기록 파일 — 날짜 헤더(## YYYY-MM-DD) 개수"
+    },
+    {
+      "label": "기록 기간",
+      "value": "2026-08-11 ~ 2026-09-21",
+      "unit": "",
+      "source": "리추얼 기록 파일 — 첫/마지막 날짜"
+    },
+    {
+      "label": "강점 행동 완전 실천",
+      "value": 13,
+      "unit": "일",
+      "source": "리추얼 기록 파일 — [마무리] 강점 행동 = '실천했다'"
+    },
+    {
+      "label": "강점 행동 일부 실천",
+      "value": 14,
+      "unit": "일",
+      "source": "리추얼 기록 파일 — [마무리] 강점 행동 = '일부 실천했다'"
+    }
+  ],
+  "competency_quote_counts": {
+    "자기동기력": 28,
+    "자기조절력": 68,
+    "대인관계력": 153
+  }
+}

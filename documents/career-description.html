@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경력기술서 — 김준식</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f7f4ee;--ink:#20241f;--soft:#4d554c;--line:#d9d3c4;--accent:#3b5a52;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font-family:"Spectral","Noto Serif KR","Noto Serif CJK KR",Georgia,serif;line-height:1.7}
+.page{max-width:820px;margin:0 auto;padding:48px 28px 72px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+ font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;margin-bottom:28px}
+.top a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+h1{font-size:1.9rem;margin:0 0 6px}
+.sub{color:var(--soft);margin:0 0 28px}
+h2{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;color:var(--accent);
+ border-bottom:1px solid var(--line);padding-bottom:6px;margin:34px 0 14px}
+a{color:var(--accent)}
+ul{padding-left:20px;margin:0}
+li{margin:4px 0}
+p{margin:0 0 14px}
+.meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;color:var(--soft)}
+.meta div{margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+th{background:#ece7da;font-weight:600}
+.todo{background:#fff3cd;padding:0 4px;border-radius:2px}
+@media print{
+ body{background:#fff}
+ .top{display:none}
+ .page{padding:0;max-width:none}
+ a{color:inherit;text-decoration:none;border:0}
+ tr,li{page-break-inside:avoid}
+}
+@media (prefers-color-scheme:dark){
+ :root{--paper:#181c18;--ink:#e7e8e2;--soft:#a2a89e;--line:#33392f;--accent:#8fb8a8;}
+ th{background:#232a24}
+ .todo{background:#4a3f12;color:#ffe9a6}
+}
+@media print{:root{--paper:#fff;--ink:#000;--soft:#333;--line:#bbb;--accent:#000} th{background:#eee}}
+</style></head>
+<body><div class="page">
+<div class="top"><a href="../index.html">← 포트폴리오로</a><a href="career-description.pdf">PDF로 받기</a></div>
+<h1>경력기술서</h1><p class="sub">프로젝트별 상황 · 행동 · 결과</p>
+<p>프로젝트 하나당 한 줄로, 세 능력(자기동기력 · 자기조절력 · 대인관계력) 중 어디에 해당하는지와 상황·행동·결과를 적었습니다.</p>
+<table><thead><tr><th>프로젝트</th><th>저장소</th><th>능력</th><th>상황</th><th>행동</th><th>결과</th></tr></thead><tbody><tr><td>부산 날씨판</td><td><a href="https://github.com/reereez15/board">github.com/reereez15/board</a></td><td>자기조절력</td><td>부산 버스 도착정보 API 키 발급이 계정 인증 문제로 막힘</td><td>원래 목표(값·출처·조회 시각을 보여주는 구조)로 되돌아가 인증이 필요 없는 날씨 API로 방향 전환</td><td>실패 시뮬레이션 5종을 포함한 정보판을 완성해 배포</td></tr><tr><td>지뢰찾기·스도쿠</td><td><a href="https://github.com/reereez15/color-sweeper-sudoku">github.com/reereez15/color-sweeper-sudoku</a></td><td>자기조절력</td><td>색상별 힌트 규칙이 복잡해져 오히려 이해하기 어려워짐</td><td>규칙을 상수 몇 개로 단순화하기로 결정하고 걷어냄</td><td>완성 가능한 범위로 게임을 마무리</td></tr><tr><td>플랜두씨 다이어리</td><td><a href="https://github.com/reereez15/pds-diary">github.com/reereez15/pds-diary</a></td><td>자기동기력</td><td>계획·실행·회고 다이어리에 회원가입·로그인을 붙이고, 다른 사람의 자료가 보이지 않게 막아야 함</td><td>bcrypt 해시 저장, JWT access/refresh 토큰, 모든 쿼리에 user_id 필터를 적용하고 배포 환경(Render)에서 직접 검증</td><td>로그아웃 상태에서 6개 엔드포인트 모두 401, 다른 계정 자료 접근 시 404를 배포 주소에서 실측 확인</td></tr><tr><td>짤·카드 스튜디오</td><td><a href="https://github.com/reereez15/card-studio">github.com/reereez15/card-studio</a></td><td>자기조절력</td><td>특정 유행 밈을 재현하는 기능까지 넣을지 범위가 불분명함</td><td>특정 밈 재현 대신 범용 이미지+문구 편집기로 범위를 좁혀 확정</td><td>무로그인 공개 편집기로 배포 완료</td></tr><tr><td>소개 페이지 + 패스키</td><td><a href="https://github.com/reereez15/portfolio-passkey">github.com/reereez15/portfolio-passkey</a></td><td>자기동기력</td><td>기존 소개 페이지(my-portfolio)에 새로운 인증 방식(패스키)을 추가해야 함</td><td>패스키 인증 방식을 조사하고 기존 페이지에 통합</td><td>소개 페이지에 패스키 로그인 추가 완료</td></tr><tr><td>로그인 경보 자동화 봇</td><td><a href="https://github.com/reereez15/bot">github.com/reereez15/bot</a></td><td>자기동기력</td><td>로그인 경보를 자동으로 판정하고 여러 채널로 알리는 SOAR 파이프라인을 직접 구성해야 함</td><td>n8n 워크플로우(Webhook→판정→allow/deny 분기), Python(Flask)·MySQL, Discord·Slack·Telegram 연동을 설계하고 구현</td><td>deny 시 메신저 알림+DB 저장, allow 시 알림만 하는 흐름을 실습으로 확인하고 문서로 정리</td></tr><tr><td>나를 말하는 에이전트</td><td>(문서 산출물)</td><td>자기동기력·대인관계력</td><td>6주간의 저녁 기록(28일치)에서 반복되는 패턴을 스스로 찾아야 함</td><td>기록을 처음부터 다시 읽고, 동료 두 명에게 직접 확인받음</td><td>회복탄력성 이야기와 자기소개서 초안 완성</td></tr><tr><td>AI와 함께 쓰는 첫 논문</td><td>[링크 예정]</td><td>자기동기력</td><td>관심 주제로 가설을 세우고 직접·공개 데이터로 검증해야 함</td><td>가설 수립부터 데이터 검증까지 끝까지 진행</td><td>한계를 명시한 논문 한 편 완성</td></tr></tbody></table>
+<h2>팀 프로젝트 (참고)</h2>
+<ul><li>헬스케어 팀 프로젝트 — <a href="https://github.com/VoidRayA/team-healthcare-project">github.com/VoidRayA/team-healthcare-project</a> (2025, 개인 저장소 아님) · 담당 역할: 백엔드 서비스</li></ul>
+</div></body></html>

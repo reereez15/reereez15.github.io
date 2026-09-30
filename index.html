@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김준식 — 포트폴리오</title>
+<meta name="description" content="막힌 문제 앞에서 로그를 끝까지 역추적하고, 그 힘을 쓸 곳을 스스로 판단하는 사람. 김준식의 개발 포트폴리오.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="김준식 — 포트폴리오">
+<meta property="og:description" content="막힌 문제 앞에서 로그를 끝까지 역추적하고, 그 힘을 쓸 곳을 스스로 판단하는 사람.">
+<meta property="og:url" content="https://reereez15.github.io">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#3b5a52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%233b5a52'/%3E%3Ctext x='32' y='43' font-size='34' text-anchor='middle' fill='%23f7f4ee' font-family='serif'%3E김%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Spectral+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ee;
+    --paper-2:#efeadf;
+    --ink:#20241f;
+    --ink-soft:#4d554c;
+    --line:#d9d3c4;
+    --accent:#3b5a52;
+    --accent-2:#8a5a34;
+    --accent-soft:#e7ede9;
+    --diff-add-bg:#e6f0e9;
+    --diff-add-ink:#2c6e49;
+    --diff-del-bg:#f5e9e6;
+    --diff-del-ink:#a13d2b;
+    --heat-0:#e9e4d8;
+    --heat-1:#a9c4b4;
+    --heat-2:#3b5a52;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --serif: "Spectral", Georgia, "Noto Serif KR", serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#181c17;
+      --paper-2:#1f2420;
+      --ink:#e9e6dd;
+      --ink-soft:#a6ac9f;
+      --line:#333a32;
+      --accent:#8fbfa9;
+      --accent-2:#d29b6a;
+      --accent-soft:#232a25;
+      --diff-add-bg:#1c2e22;
+      --diff-add-ink:#8fd9ac;
+      --diff-del-bg:#2e211c;
+      --diff-del-ink:#e2a08c;
+      --heat-0:#262c26;
+      --heat-1:#3d5a49;
+      --heat-2:#8fbfa9;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:24px;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 480px at 85% -10%, var(--paper-2), transparent),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:64px 24px 96px;
+  }
+
+  header.hero{
+    display:flex;
+    align-items:flex-start;
+    gap:22px;
+    margin-bottom:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid var(--line);
+  }
+  .avatar{
+    flex:none;
+    width:64px;height:64px;
+    border-radius:50%;
+    background:linear-gradient(155deg, var(--accent), var(--accent-2));
+    color:var(--paper);
+    font-family:"Spectral SC", var(--serif);
+    font-size:1.5rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-text{flex:1;min-width:0;}
+  .name{
+    font-family:"Spectral SC", var(--serif);
+    font-size:2.1rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    margin:0 0 8px;
+  }
+  .tagline{
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+  }
+  .tagline em{
+    font-style:normal;
+    border-bottom:1px solid var(--accent);
+  }
+  .social{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:0.82rem;
+  }
+  .social a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px dotted var(--line);
+    padding-bottom:1px;
+  }
+  .social a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+  .social svg{width:15px;height:15px;fill:currentColor;}
+
+  nav.jump{
+    margin-top:22px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+  nav.jump a{color:var(--ink-soft);text-decoration:none;}
+  nav.jump a:hover{color:var(--accent);}
+  nav.jump a.active{color:var(--accent);border-bottom:1px solid var(--accent);}
+
+  .stack{
+    display:flex;flex-wrap:wrap;gap:6px;
+    margin:0 0 16px;padding:0;list-style:none;
+    font-family:var(--mono);font-size:0.74rem;
+  }
+  .stack li{
+    padding:2px 9px;border:1px solid var(--line);border-radius:999px;
+    color:var(--ink-soft);background:var(--paper);
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .tags span{
+    font-family:var(--mono);font-size:0.72rem;
+    padding:1px 8px;border-radius:3px;
+    background:var(--accent-soft);color:var(--accent);
+  }
+
+  section{margin:56px 0;}
+  h2{
+    font-size:0.85rem;
+    font-family:var(--mono);
+    letter-spacing:0.02em;
+    color:var(--accent);
+    margin:0 0 24px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .commits{position:relative;padding-left:26px;}
+  .commits::before{
+    content:"";
+    position:absolute;left:5px;top:6px;bottom:6px;
+    width:1px;background:var(--line);
+  }
+  .commit{position:relative;margin-bottom:26px;}
+  .commit:last-child{margin-bottom:0;}
+  .commit::before{
+    content:"";
+    position:absolute;left:-25px;top:8px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+  }
+  .commit .meta{
+    font-family:var(--mono);
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+    display:flex;gap:10px;
+  }
+  .commit .hash{color:var(--accent-2);}
+  .commit p{margin:0;}
+  .commit:first-child .meta{color:var(--accent);}
+
+  @keyframes commit-in{
+    from{opacity:0;transform:translateY(6px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .commit{animation:commit-in .5s ease both;}
+  .commit:nth-child(1){animation-delay:.05s;}
+  .commit:nth-child(2){animation-delay:.15s;}
+  .commit:nth-child(3){animation-delay:.25s;}
+  .commit:nth-child(4){animation-delay:.35s;}
+  .commit:nth-child(5){animation-delay:.45s;}
+  @media (prefers-reduced-motion: reduce){
+    .commit{animation:none;}
+  }
+
+  /* ---- scroll progress bar ---- */
+  .progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    z-index:50;transition:width .1s linear;
+  }
+
+  /* ---- section reveal ---- */
+  section{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;}
+  section.in-view{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    section{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---- collapsible evidence ---- */
+  details.evidence{margin-top:20px;}
+  details.evidence summary{
+    cursor:pointer;
+    font-family:var(--mono);
+    font-size:0.82rem;
+    color:var(--accent);
+    list-style:none;
+    padding:10px 0;
+    border-top:1px dashed var(--line);
+  }
+  details.evidence summary::-webkit-details-marker{display:none;}
+  details.evidence summary::before{content:"▸ ";}
+  details.evidence[open] summary::before{content:"▾ ";}
+  details.evidence summary:hover{color:var(--accent-2);}
+
+  .log{
+    font-family:var(--mono);
+    font-size:0.88rem;
+    background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    border-radius:2px;
+    padding:18px 20px;
+  }
+  .log dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;}
+  .log dt{color:var(--ink-soft);white-space:nowrap;}
+  .log dd{margin:0;}
+  .log .src{font-size:0.78rem;color:var(--ink-soft);margin-top:2px;display:block;}
+
+  /* ---- heatmap ---- */
+  .heatmap{margin-top:20px;}
+  .heatmap-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:4px;
+    max-width:320px;
+  }
+  .heatmap-grid span{
+    aspect-ratio:1;
+    border-radius:2px;
+    background:var(--heat-0);
+  }
+  .heatmap-grid span[data-level="1"]{background:var(--heat-1);}
+  .heatmap-grid span[data-level="2"]{background:var(--heat-2);}
+  .heatmap-legend{
+    display:flex;align-items:center;gap:6px;
+    margin-top:10px;font-family:var(--mono);font-size:0.74rem;color:var(--ink-soft);
+  }
+  .heatmap-legend i{width:11px;height:11px;border-radius:2px;display:inline-block;background:var(--heat-0);}
+  .heatmap-legend i[data-level="1"]{background:var(--heat-1);}
+  .heatmap-legend i[data-level="2"]{background:var(--heat-2);}
+
+  /* ---- diff block ---- */
+  .diff{
+    font-family:var(--mono);
+    font-size:0.86rem;
+    border:1px solid var(--line);
+    border-radius:3px;
+    overflow:hidden;
+    margin-top:24px;
+  }
+  .diff .line{padding:7px 16px;white-space:pre-wrap;}
+  .diff .del{background:var(--diff-del-bg);color:var(--diff-del-ink);}
+  .diff .add{background:var(--diff-add-bg);color:var(--diff-add-ink);}
+  .diff .ctx{color:var(--ink-soft);padding:5px 16px;font-size:0.78rem;}
+
+  .works{list-style:none;margin:0;padding:0;}
+  .works li{
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    transition:padding-left .15s ease;
+  }
+  .works li:hover{padding-left:6px;}
+  .works li:last-child{border-bottom:none;}
+  .works .title{font-weight:600;}
+  .works .desc{color:var(--ink-soft);font-size:0.95rem;margin-top:2px;}
+  .works .repo{
+    font-family:var(--mono);font-size:0.78rem;color:var(--accent-2);
+    margin-top:6px;display:inline-block;
+  }
+  .works a.repo-link{color:var(--accent-2);text-decoration:none;border-bottom:1px dotted var(--accent-2);}
+  .works a.repo-link:hover{color:var(--accent);border-bottom-color:var(--accent);}
+  .works .pending{color:var(--ink-soft);font-family:var(--mono);font-size:0.82rem;white-space:nowrap;}
+
+  .docs{display:flex;gap:14px;flex-wrap:wrap;}
+  .docs a{
+    font-family:var(--mono);
+    font-size:0.88rem;
+    color:var(--ink);
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:10px 16px;
+    border-radius:3px;
+  }
+  .docs a:hover{border-color:var(--accent);color:var(--accent);}
+  .docs a.pdf{border-style:dashed;color:var(--ink-soft);}
+
+  footer{
+    margin-top:72px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  footer a{color:var(--accent);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  footer .row{display:inline-flex;align-items:center;gap:6px;}
+  footer svg{width:14px;height:14px;fill:currentColor;}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="avatar">김</div>
+    <div class="hero-text">
+      <p class="name">김준식</p>
+      <!-- 첫 화면 한 줄 소개: 반드시 본인 손으로 다듬어 "...한 사람"으로 끝맺어 주세요 -->
+      <p class="tagline">막힌 문제 앞에서 로그를 끝까지 역추적하고, 그 힘을 쓸 곳을 스스로 판단하는 사람.</p>
+      <ul class="stack" aria-label="다뤄본 기술">
+        <li>Java</li><li>Spring Boot</li><li>React</li><li>Node.js · Express</li>
+        <li>MySQL</li><li>Python · Flask</li><li>n8n</li><li>HTML · CSS · JS</li>
+      </ul>
+      <div class="social">
+        <a href="https://github.com/reereez15" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          github.com/reereez15
+        </a>
+        <a href="mailto:sig2016@naver.com">
+          <svg viewBox="0 0 16 16"><path d="M1.5 3A1.5 1.5 0 0 0 0 4.5v7A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 14.5 3h-13Zm0 1h13a.5.5 0 0 1 .485.379L8 9.118 1.015 4.38A.5.5 0 0 1 1.5 4ZM1 5.2v6.3a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V5.2L8.28 9.58a.5.5 0 0 1-.56 0L1 5.2Z"/></svg>
+          sig2016@naver.com
+        </a>
+      </div>
+      <nav class="jump">
+        <a href="#story">이야기</a>
+        <a href="#numbers">숫자</a>
+        <a href="#works">대표작</a>
+        <a href="#docs">문서</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="story">
+    <h2>이야기</h2>
+    <div class="commits">
+      <!-- 첫 커밋 메시지·마지막 커밋 메시지(본문)는 본인 손으로 다시 씁니다 -->
+      <div class="commit">
+        <div class="meta"><span class="hash">407da3e</span><span class="date">과거</span></div>
+        <p>어떤식으로 해야되는지 알지 못하고 어떤 것을 해야되는지 아무것도 알지 못하는 시기였습니다.</p>
+      </div>
+      <div class="commit">
+        <div class="meta"><span class="hash">42168a4</span><span class="date">2026-09-02 ~ 09-11</span></div>
+        <p>같은 문장을 네 번이나 반복해서 쓰고 있는 저를 발견했습니다. 9월 2일, 7일, 9일, 11일 — "원인을 알 수 없는 오류를 만났을 때, 임시방편으로 덮지 않고 로그와 동작 원리를 끝까지 역추적해 해결했다." 네 번을 겪고 나서야, 이게 제가 정말 놓지 않는 힘이라는 걸 알았습니다.</p>
+      </div>
+      <div class="commit">
+        <div class="meta"><span class="hash">a65877b</span><span class="date">2026-08-14</span></div>
+        <p>이 힘은 혼자만의 것이 아니었습니다. 한 동료는 이렇게 말해줬습니다. "비전공자이지만 항상 수업에 열심히 참여하고 제가 막히는 부분이 있으면 옆에 와서 알려주고." 문제를 파고드는 힘을, 저는 늘 옆 사람과 나누려 했습니다.</p>
+      </div>
+      <div class="commit">
+        <div class="meta"><span class="hash">9df00b9</span><span class="date">2026-09-14</span></div>
+        <p>저는 다시 한 문장을 남겼습니다. "시간과 에너지가 부족한 상황에서 이것저것 다 하려 욕심부리지 않고, 스스로의 일정에 맞춰 불필요한 기능이나 생각을 과감하게 쳐냈다." 계획이 없어 흔들리던 사람이, 계획을 세우고 그 안에서 무엇을 내려놓을지 판단하는 사람이 되어 있었습니다.</p>
+      </div>
+      <div class="commit">
+        <div class="meta"><span class="hash">0d78778</span><span class="date">지금</span></div>
+        <p>끝까지 파고드는 힘, 우선순위를 판단하는 힘, 먼저 다가가는 힘. 이 세 가지를 이제 혼자가 아니라 함께 쓰는 자리에서 시험해보고 싶습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="numbers">
+    <h2>숫자로 뒷받침</h2>
+    <div class="log">
+      <dl>
+        <dt>기록 일수</dt><dd>28일<span class="src">출처: 리추얼 기록, 2026-08-11 ~ 2026-09-21</span></dd>
+        <dt>강점 행동 완전 실천</dt><dd>13일<span class="src">출처: 리추얼 기록 [마무리] "강점 행동: 실천했다"</span></dd>
+        <dt>반복된 역추적 장면</dt><dd>4회<span class="src">출처: 09-02, 09-07, 09-09, 09-11 "강점이 드러난 일화"</span></dd>
+      </dl>
+    </div>
+
+    <details class="evidence">
+      <summary>히트맵·전후 비교 자세히 보기</summary>
+
+    <div class="heatmap">
+      <div class="heatmap-grid">
+        <span data-level="1" title="2026-08-11: 일부 실천"></span>
+        <span data-level="1" title="2026-08-12: 일부 실천"></span>
+        <span data-level="1" title="2026-08-13: 일부 실천"></span>
+        <span data-level="1" title="2026-08-14: 일부 실천"></span>
+        <span data-level="0" title="2026-08-15: 기록 없음"></span>
+        <span data-level="0" title="2026-08-16: 기록 없음"></span>
+        <span data-level="0" title="2026-08-17: 기록 없음"></span>
+        <span data-level="1" title="2026-08-18: 일부 실천"></span>
+        <span data-level="2" title="2026-08-19: 완전 실천"></span>
+        <span data-level="1" title="2026-08-20: 일부 실천"></span>
+        <span data-level="1" title="2026-08-21: 일부 실천"></span>
+        <span data-level="0" title="2026-08-22: 기록 없음"></span>
+        <span data-level="0" title="2026-08-23: 기록 없음"></span>
+        <span data-level="1" title="2026-08-24: 일부 실천"></span>
+        <span data-level="2" title="2026-08-25: 완전 실천"></span>
+        <span data-level="1" title="2026-08-26: 일부 실천"></span>
+        <span data-level="2" title="2026-08-27: 완전 실천"></span>
+        <span data-level="1" title="2026-08-28: 일부 실천"></span>
+        <span data-level="0" title="2026-08-29: 기록 없음"></span>
+        <span data-level="0" title="2026-08-30: 기록 없음"></span>
+        <span data-level="1" title="2026-08-31: 일부 실천"></span>
+        <span data-level="2" title="2026-09-01: 완전 실천"></span>
+        <span data-level="1" title="2026-09-02: 일부 실천"></span>
+        <span data-level="2" title="2026-09-03: 완전 실천"></span>
+        <span data-level="1" title="2026-09-04: 일부 실천"></span>
+        <span data-level="0" title="2026-09-05: 기록 없음"></span>
+        <span data-level="0" title="2026-09-06: 기록 없음"></span>
+        <span data-level="2" title="2026-09-07: 완전 실천"></span>
+        <span data-level="2" title="2026-09-08: 완전 실천"></span>
+        <span data-level="2" title="2026-09-09: 완전 실천"></span>
+        <span data-level="0" title="2026-09-10: 기록 없음"></span>
+        <span data-level="2" title="2026-09-11: 완전 실천"></span>
+        <span data-level="0" title="2026-09-12: 기록 없음"></span>
+        <span data-level="0" title="2026-09-13: 기록 없음"></span>
+        <span data-level="2" title="2026-09-14: 완전 실천"></span>
+        <span data-level="2" title="2026-09-15: 완전 실천"></span>
+        <span data-level="2" title="2026-09-16: 완전 실천"></span>
+        <span data-level="1" title="2026-09-17: 일부 실천"></span>
+        <span data-level="2" title="2026-09-18: 완전 실천"></span>
+        <span data-level="0" title="2026-09-19: 기록 없음"></span>
+        <span data-level="0" title="2026-09-20: 기록 없음"></span>
+        <span data-level="0" title="2026-09-21: 기록 없음"></span>
+      </div>
+      <div class="heatmap-legend">
+        <span>42일 중 28일 기록</span>
+        <i data-level="0"></i><span>없음</span>
+        <i data-level="1"></i><span>일부 실천</span>
+        <i data-level="2"></i><span>완전 실천</span>
+      </div>
+    </div>
+
+    <div class="diff" aria-label="8월 27일과 9월 14일 기록 비교">
+      <div class="ctx">@@ 저녁 기록 @@</div>
+      <div class="line del">- 2026-08-27: 아직까진 즉흥적인 부분이 많아 계획 수립하고 이행하는 과정을 겪어야될거같다.</div>
+      <div class="line add">+ 2026-09-14: 시간과 에너지가 부족한 상황에서 이것저것 다 하려 욕심부리지 않고, 스스로의 일정에 맞춰 불필요한 기능이나 생각을 과감하게 쳐냈다.</div>
+    </div>
+    </details>
+  </section>
+
+  <section id="works">
+    <h2>대표작</h2>
+    <ul class="works">
+      <li>
+        <div>
+          <div class="title">VPN 연결 유무가 접속 속도에 미치는 영향</div>
+          <div class="desc">국내포털·해외일반·스트리밍 6개 사이트에서 VPN on/off 각 10회씩, 총 120회 실측. 다운로드 속도는 최대 -64%, 핑은 사이트 유형별로 다른 영향을 확인.</div>
+          <a class="repo-link" href="documents/paper.html"><span class="repo">논문 보기</span></a> · <a class="repo-link" href="documents/paper.pdf"><span class="repo">PDF</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">부산 날씨판</div>
+          <div class="desc">값·출처·조회 시각을 함께 보여주는 개인 정보판. 인증이 막힌 버스 API 대신 방향을 바꿔 완성.</div>
+          <div class="tags"><span>Node.js</span><span>Express</span><span>Open-Meteo API</span><span>Render 배포</span></div>
+          <a class="repo-link" href="https://board-6td6.onrender.com" target="_blank" rel="noopener"><span class="repo">라이브 보기 ↗</span></a> · <a class="repo-link" href="https://github.com/reereez15/board" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/board</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">플랜두씨 다이어리</div>
+          <div class="desc">계획·실행·회고가 이어지는 다이어리 앱. 회원가입·로그인 인증을 붙이고 타인 자료 접근을 차단.</div>
+          <div class="tags"><span>Node.js</span><span>Express</span><span>MySQL</span><span>JWT · bcrypt</span><span>Render 배포</span></div>
+          <a class="repo-link" href="https://github.com/reereez15/pds-diary" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/pds-diary</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">짤·카드 스튜디오</div>
+          <div class="desc">이미지+문구를 조합하는 무로그인 공개 편집기.</div>
+          <div class="tags"><span>브라우저 편집기</span><span>이미지 내보내기</span></div>
+          <a class="repo-link" href="https://github.com/reereez15/card-studio" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/card-studio</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">지뢰찾기·스도쿠</div>
+          <div class="desc">지뢰찾기 뼈대에 스도쿠 제약을 엮은 브라우저 미니게임. 복잡했던 힌트 규칙을 단순화해 완성.</div>
+          <div class="tags"><span>브라우저 게임</span><span>유일해 검증 로직</span></div>
+          <a class="repo-link" href="https://github.com/reereez15/color-sweeper-sudoku" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/color-sweeper-sudoku</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">로그인 경보 자동화 봇</div>
+          <div class="desc">SOAR 기반 보안 관제 자동화 파이프라인.</div>
+          <div class="tags"><span>n8n</span><span>Python · Flask</span><span>MySQL</span><span>Discord · Slack · Telegram</span></div>
+          <a class="repo-link" href="https://github.com/reereez15/bot" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/bot</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">소개 페이지 + 패스키</div>
+          <div class="desc">개인 소개 페이지에 패스키 인증을 추가로 붙인 버전.</div>
+          <div class="tags"><span>Passkey (WebAuthn)</span></div>
+          <a class="repo-link" href="https://github.com/reereez15/portfolio-passkey" target="_blank" rel="noopener"><span class="repo">github.com/reereez15/portfolio-passkey</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">헬스케어 팀 프로젝트</div>
+          <div class="desc">2025년, 여러 명이 함께 만든 팀 프로젝트(개인 저장소 아님).</div>
+          <a class="repo-link" href="https://github.com/VoidRayA/team-healthcare-project" target="_blank" rel="noopener"><span class="repo">github.com/VoidRayA/team-healthcare-project</span></a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="title">계속 배우는 앱</div>
+          <div class="desc">연구 결과를 반영해 실제로 쓰는 제품으로 구현하는 마지막 과제.</div>
+        </div>
+        <span class="pending">[진행 예정]</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="docs">
+    <h2>문서</h2>
+    <div class="docs">
+      <a href="documents/resume.html">이력서</a>
+      <a href="documents/cover-letter.html">자기소개서</a>
+      <a href="documents/career-description.html">경력기술서</a>
+      <a href="documents/resume.pdf" class="pdf">이력서 PDF</a>
+      <a href="documents/cover-letter.pdf" class="pdf">자기소개서 PDF</a>
+      <a href="documents/career-description.pdf" class="pdf">경력기술서 PDF</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="row">
+      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      <a href="https://github.com/reereez15" target="_blank" rel="noopener">github.com/reereez15</a>
+    </span>
+    <span class="row">
+      <svg viewBox="0 0 16 16"><path d="M1.5 3A1.5 1.5 0 0 0 0 4.5v7A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 14.5 3h-13Zm0 1h13a.5.5 0 0 1 .485.379L8 9.118 1.015 4.38A.5.5 0 0 1 1.5 4ZM1 5.2v6.3a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V5.2L8.28 9.58a.5.5 0 0 1-.56 0L1 5.2Z"/></svg>
+      <a href="mailto:sig2016@naver.com">sig2016@naver.com</a>
+    </span>
+  </footer>
+
+</div>
+<script>
+  // 스크롤 진행바
+  const bar = document.getElementById('progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (scrolled / max) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // 현재 섹션 강조 (scrollspy)
+  const navLinks = document.querySelectorAll('nav.jump a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, {rootMargin:'-35% 0px -55% 0px'});
+  document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+  // 섹션 등장 효과
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sections = document.querySelectorAll('section');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    sections.forEach(s => s.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+    sections.forEach(s => io.observe(s));
+  }
+</script>
+</body>
+</html>
